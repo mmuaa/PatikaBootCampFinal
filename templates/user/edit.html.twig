@@ -1,0 +1,28 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-5">
+            <aside>
+                <img height="220px" src="{{ asset('uploads/images/' ~ app.user.image) }}" alt="Image">
+                <div class="sidebar">
+                    <ul>
+                        <li><a href="/user">My Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="px-xl-7">
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_user_index') }}">Profile Geri Dön</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

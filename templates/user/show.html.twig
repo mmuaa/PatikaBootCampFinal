@@ -1,0 +1,29 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Kullanıcı Sayfası{% endblock %}
+
+{% block body %}
+{% include "user/usermenu.html.twig" %}
+        <div class="px-xl-7">
+    <table class="table">
+        <h2>Profilim</h2>
+        <tbody>
+            <tr>
+              <th>Adı Soyadı</th>
+              <td>{{ app.user.name }} {{ app.user.surname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><a href="{{ path('app_user_edit', {'id': app.user.id}) }}">Düzenle</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

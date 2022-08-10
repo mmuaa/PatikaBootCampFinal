@@ -1,0 +1,46 @@
+{% extends 'homebase.html.twig' %}
+
+{% block body %}
+
+<form name="orders" method="post">
+    <div id="orders">
+        <div class="mb-3 row">
+            <div class="col-sm-10"><input type="hidden" id="orders_userid" name="orders[userid]" class="form-control" value="{{ app.user.id }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_name">Name</label>
+            <div class="col-sm-10"><input type="text" id="orders_name" name="orders[name]" maxlength="255" class="form-control" value="{{ app.user.name }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_surname">Surname</label>
+            <div class="col-sm-10"><input type="text" id="orders_surname" name="orders[surname]" maxlength="255" class="form-control" value="{{ app.user.surname }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_email">Email</label>
+            <div class="col-sm-10"><input type="text" id="orders_email" name="orders[email]" maxlength="255" class="form-control" value="{{ app.user.email }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_address">Address</label>
+            <div class="col-sm-10"><input type="text" id="orders_address" name="orders[address]" maxlength="255" class="form-control" value="{{ app.user.address }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_phone">Phone</label>
+            <div class="col-sm-10"><input type="text" id="orders_phone" name="orders[phone]" maxlength="30" class="form-control" value="{{ app.user.phone }}" />        </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2" for="orders_price">Ödenecek Toplam</label>
+            <div class="col-sm-10"><input type="number" id="orders_price" name="orders[price]" class="form-control" value="{{ total }}" />  </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2 required" for="orders_shipping">Shipping</label>
+            <div class="col-sm-10">
+                <select id="orders_shipping" name="orders[shipping]" class="form-select">
+                    <option value="Kapıda ödeme">Kapıda ödeme</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button class="btn">Save</button>
+</form>
+
+{% endblock %}

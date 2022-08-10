@@ -1,0 +1,99 @@
+<!-- Topbar Start -->
+<div class="container-fluid">
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="col-lg-4">
+            <a href="{{ path('app_home') }}" class="text-decoration-none">
+                <span class="h1 text-uppercase text-primary bg-dark px-2">Buy</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Box</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="search" class="form-control" placeholder="Suche...">
+                </div>
+                <!-- /input-group -->
+            </div>
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="#"><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level" id="entitiesNav">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="/admin" class="btn px-0 ml-3">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge text-black-50 border border-primary rounded-circle" style="padding-bottom: 2px;">Panele Git</span>
+                </a>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('app_shopcart') }}" class="btn px-0 ml-3">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge text-black-50 border border-primary rounded-circle" style="padding-bottom: 2px;">Sepetim</span>
+            </a>
+                <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                    <img height="40px" src="{{ asset('uploads/images/' ~ app.user.image) }}">
+                    {{ app.user.name }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="/user"><button class="dropdown-item" type="button">Profilim</button></a>
+                    <a href="/logout"><button class="dropdown-item" type="button">Çıkış Yap</button></a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/loginuser" class="btn px-0 ml-3">
+                <i class="fas fa-user text-primary"></i>
+                <span class="badge text-black-50 border border-primary rounded-circle" style="padding-bottom: 2px;">Giriş Yap</span>
+            </a>
+            <a href="/register" class="btn px-0 ml-3">
+                <i class="fas fa-user text-primary"></i>
+                <span class="badge text-black-50 border border-primary rounded-circle" style="padding-bottom: 2px;">Kayıt Ol</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid bg-dark mb-30">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Kategoriler</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                <div class="navbar-nav w-100">
+                    {% for cats in categories %}
+                        {{ cats|raw }}
+                    {% endfor %}
+                </div>
+            </nav>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <a href="" class="text-decoration-none d-block d-lg-none">
+                    <span class="h1 text-uppercase text-dark bg-light px-2">Buy</span>
+                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Box</span>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="/" class="nav-item nav-link active">Anasayfa</a>
+                        <a href="/product" class="nav-item nav-link">Tüm Ürünler</a>
+                        <a href="/aboutus" class="nav-item nav-link">Hakkımızda</a>
+                        <a href="/contact" class="nav-item nav-link">İletişim</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Navbar End -->

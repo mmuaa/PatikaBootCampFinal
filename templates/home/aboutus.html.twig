@@ -1,0 +1,37 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Hakkımızda{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="{{ path('app_home') }}">Home</a>
+                <span class="breadcrumb-item active">Hakkımızda</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- Shop Detail Start -->
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            {{ setting[0].about|raw }}
+        </div>
+    </div>
+
+</div>
+<!-- Shop Detail End -->
+
+{% endblock %}
+
+
+

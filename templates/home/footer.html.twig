@@ -1,0 +1,89 @@
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary text-uppercase mb-4">Hakkımızda</h5>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting[0].address }}</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting[0].email }}</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting[0].phone }}</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                </div>
+                <div class="col-md-4 mb-5">
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-square mr-2" href="{{ setting[0].twitter }}"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="{{ setting[0].facebook }}"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-square" href="{{ setting[0].instagram }}"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/home/') }}lib/easing/easing.min.js"></script>
+<script src="{{ asset('assets/home/') }}lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="{{ asset('assets/home/') }}mail/jqBootstrapValidation.min.js"></script>
+<script src="{{ asset('assets/home/') }}mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="{{ asset('assets/home/') }}js/main.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var searchRequest = null;
+        $("#search").keyup(function() {
+            var minlength = 3;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: "text",
+                    success: function(msg){
+                        //we need to check if the value is the same
+                        if (value===$(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+                                    if (key === 'entities') {
+                                        if (id !== 'error') {
+                                            entitySelector.append('<li><a style="color: black;" href="/product/'+id+'">'+value+'</a></li>');
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

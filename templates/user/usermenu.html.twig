@@ -1,0 +1,18 @@
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-5">
+            <aside>
+                <img height="220px" src="{{ asset('uploads/images/' ~ app.user.image) }}" alt="Image">
+                <div class="sidebar">
+                    <ul style="color: black">
+                        <li><a href="/user" style="color: black;" class="active">Profilim</a></li>
+                        <li><a href="/user/orders" style="color: black">Siparişlerim</a></li>
+                        <li><form method="post" action="{{ path('app_user_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+                                <button class="btn btn-danger">Üyeliğimi Sil</button>
+                            </form></li>
+                        <li><a href="/logout" style="color: black">Çıkış Yap</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
